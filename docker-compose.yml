@@ -1,0 +1,62 @@
+version: '3.8'
+services:
+
+
+    # php service
+    php:
+        build:
+            context: ./
+            dockerfile: docker/dockerfile
+        working_dir: /var/www
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - "mysql_db"
+        networks:
+            - service-network
+   # nginx service
+    nginx:
+        image: nginx:alpine
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "8000:80"
+        volumes:
+            - ./:/var/www
+            - ./docker/nginx/conf.d:/etc/nginx/conf.d/
+        networks:
+            - service-network
+    # mysql  service
+    mysql_db:
+        image: mysql:5.7.22
+        restart: unless-stopped
+        command: --default-authentication-plugin=mysql_native_password
+        ports:
+            - "3306:3306"
+        volumes:
+            - mysql_data:/var/lib/mysql
+            - ./mysql/my.cnf:/etc/mysql/my.cnf
+        environment:
+            MYSQL_USER: anas
+            MYSQL_DATABASE: task_db
+            MYSQL_PASSWORD: root
+            MYSQL_ROOT_PASSWORD: root
+        networks:
+            - service-network
+    # phpmyadmin service
+    phpmyadmin:
+        image: phpmyadmin
+        restart: always
+        environment:
+             - PMA_ARBITRARY=1
+             - PMA_HOST=mysql_db
+        ports:
+            - "8888:80"
+        networks:
+            - service-network
+volumes:
+    mysql_data:
+        driver: local
+networks:
+    service-network:
+        driver: bridge

@@ -1,0 +1,46 @@
+FROM php:8.1-fpm
+
+# Arguments defined in docker-compose.yml
+ARG user
+ARG uid
+
+# Set working directory
+WORKDIR /var/www
+
+
+#Install dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    libzip-dev \
+    unzip
+
+
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath
+RUN docker-php-ext-install zip
+RUN docker-php-ext-install gd
+RUN docker-php-ext-configure gd
+
+
+#ADD . /var/www
+#RUN chown -R www-data:www-data /var/www
+
+# Get latest Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+
+RUN chown 1000:1000 /var/www
+
+#RUN chmod -R 775 /var/www/storage
+
+
+# Expose port 9000 and start php-fpm server
+EXPOSE 9000
