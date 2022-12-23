@@ -1,7 +1,7 @@
 $(function () {
 
     window.onerror = function (msg, url, line) {
-        alert('try again');
+         alert('try again');
         location.reload();
     }
 
