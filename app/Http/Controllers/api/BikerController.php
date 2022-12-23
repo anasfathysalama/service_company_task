@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\general;
+namespace App\Http\Controllers\api;
 
 use App\Actions\StoreOrderAction;
 use App\Actions\UpdateParcelAction;
-use App\Datatables\BikerParcelsDatatable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PickedParcelRequest;
+use App\Models\Parcel;
 use App\Traits\ApiResponseTrait;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -17,12 +17,8 @@ class BikerController extends Controller
 
     public function index()
     {
-        return view('biker_dashboard');
-    }
-
-    public function getData(BikerParcelsDatatable $datatable)
-    {
-        return $datatable->getAllData();
+        $data = Parcel::query()->where('status', 'new')->get();
+        return $this->apiSuccessResponse($data);
     }
 
     /**
