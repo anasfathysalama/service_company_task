@@ -34,7 +34,7 @@ class BikerController extends Controller
     public function pickUpParcel(PickedParcelRequest $request, UpdateParcelAction $parcelAction, StoreOrderAction $orderAction)
     {
         try {
-            $parcel = $parcelAction->update($request->id);
+            $parcel = $parcelAction->update($request->parcel_id);
             $orderAction->create($request->all(), $parcel);
             return $this->apiSuccessResponse([], 'Picked Successfully');
         } catch (\Exception $exception) {

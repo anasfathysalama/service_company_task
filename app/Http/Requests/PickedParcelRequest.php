@@ -26,6 +26,7 @@ class PickedParcelRequest extends FormRequest
         return [
             'pick_up_time' => 'required',
             'delivered_time' => 'required',
+            'parcel_id' => $this->wantsJson() ? 'required' : ''
         ];
     }
 }

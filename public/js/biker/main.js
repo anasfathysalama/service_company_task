@@ -92,7 +92,7 @@ let pickedParcel = (pickedTime, deliveredTime, id) => {
     $.ajax({
         type: "POST",
         data: {
-            id: id,
+            parcel_id: id,
             pick_up_time: pickedTime,
             delivered_time: deliveredTime,
             "_token": token,
