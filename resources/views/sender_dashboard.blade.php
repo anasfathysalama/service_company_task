@@ -12,7 +12,7 @@
 
                     <div class="card-body">
 
-                        <table class="table" id="parcels-table">
+                        <table class="table" id="sender-parcels-table">
                             <thead>
                             <tr>
                                 <th>#</th>

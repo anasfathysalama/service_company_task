@@ -4,12 +4,12 @@ $(function (){
 
 
 let loadDataTable = (data = {}) => {
-    destroyDataTable('parcels-table');
-    let oTable = $("#parcels-table").DataTable({
+    destroyDataTable('sender-parcels-table');
+    let oTable = $("#sender-parcels-table").DataTable({
         "serverSide": true,
         "processing": true,
         "ajax": {
-            url: baseUrl + '/sender-parcels',
+            url: baseUrl + '/get-sender-parcels',
             type: 'get',
             data
         },
@@ -21,7 +21,6 @@ let loadDataTable = (data = {}) => {
         ],
         columnDefs: [
             {
-                // targets: 3,
                 orderable: false,
                 searchable: false,
             }],
@@ -40,8 +39,8 @@ let loadDataTable = (data = {}) => {
             "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
             ">"
     });
-    $('#parcels-table_filter input').unbind();
-    $('#parcels-table_filter input').bind('keyup', function (e) {
+    $('#sender-parcels-table_filter input').unbind();
+    $('#sender-parcels-table_filter input').bind('keyup', function (e) {
         if (e.keyCode === 13) {
             oTable.search(this.value).draw();
         }

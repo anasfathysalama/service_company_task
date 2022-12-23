@@ -4,10 +4,8 @@
     <title>Laravel</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-
     <link rel="stylesheet" href="{{asset('assets/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="{{asset('assets/jquery.dataTables.min.css')}}">
 
     <style>
 
@@ -90,9 +88,19 @@
 <script src="{{asset('assets/jquery-3.6.1.min.js')}}"></script>
 <script src="{{asset('assets/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('assets/bootstrap.min.js')}}"></script>
-<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="{{asset('assets/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('assets/notify.min.js')}}"></script>
 <script src="{{asset('js/main.js')}}"></script>
 @stack('js')
+<script>
+    let successSession = "{{session()->get('success')}}";
+    if(successSession !== ''){
+        alertMessage(successSession);
+    }
+    let errorSession = "{{session()->get('error')}}";
+    if(errorSession !== ''){
+        alertMessage(errorSession , 'error');
+    }
+</script>
 </body>
 </html>

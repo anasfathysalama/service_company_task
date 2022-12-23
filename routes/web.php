@@ -12,13 +12,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/', [DashboardController::class,'index'])->name('dashboard');
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
-    Route::get('sender-parcels' , [ParcelController::class , 'getData']);
+    Route::get('sender-parcels', [ParcelController::class,'index'])->name('sender.index');
+    Route::get('get-sender-parcels' , [ParcelController::class , 'getData']);
     Route::post('parcels' , [ParcelController::class , 'store']);
 
-    Route::get('get-all-parcels' , [BikerController::class , 'getData']);
+    Route::get('biker-parcels' , [BikerController::class , 'index'])->name('biker.index');
+    Route::get('get-biker-parcels' , [BikerController::class , 'getData']);
+    Route::post('parcels/pick-up' , [BikerController::class , 'pickUpParcel']);
 });
 
 Route::middleware('guest')->group(function () {

@@ -20,7 +20,7 @@ class LoginController extends Controller
     {
         if (Auth::attempt($request->validated())) {
             toastr()->success('You have successfully login');
-            return redirect()->intended('dashboard');
+            return auth()->user()->type === 'biker' ? redirect()->route('biker.index') : redirect()->route('sender.index');
         }
         toastr()->error('Invalid credentials');
         return redirect()->route('login.index');

@@ -23,7 +23,7 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                return auth()->user()->type === 'biker' ? redirect()->route('biker.index') : redirect()->route('sender.index');
             }
         }
 

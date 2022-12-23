@@ -20,7 +20,7 @@ class RegisterController extends Controller
         $user = $userAction->create($request->validated());
         Auth::login($user);
         toastr()->success('You have successfully register');
-        return redirect()->route('dashboard');
+        return auth()->user()->type === 'biker' ? redirect()->route('biker.index') : redirect()->route('sender.index');
     }
 
 

@@ -14,6 +14,12 @@ class ParcelController extends Controller
 {
     use ApiResponseTrait;
 
+
+    public function index()
+    {
+        return view('sender_dashboard');
+    }
+
     /**
      * @param ParcelRequest $request
      * @param StoreParcelAction $parcelAction

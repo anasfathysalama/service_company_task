@@ -6,7 +6,7 @@ use App\Models\Parcel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ParcelsDatatable extends DataTables
+class BikerParcelsDatatable extends DataTables
 {
     protected array $selectedColumns = ['parcels.id', 'parcels.pick_up_address', 'parcels.drop_off_address', 'parcels.status'];
 
@@ -86,7 +86,7 @@ class ParcelsDatatable extends DataTables
                     "id" => $record->id,
                     "pick_up_address" => $record->pick_up_address,
                     "drop_off_address" => $record->drop_off_address,
-                    "status" => $record->status === 'picked_up' ? 'Picked-up' : ucfirst($record->status),
+                    "status" => $record->status,
                 ];
             }
         }
