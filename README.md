@@ -24,9 +24,8 @@ after clone this repo you will find `docker-compose.yaml` file, and it contains 
 - inside root directory for application run `` docker-compose up --build `` and it will build nginx , php , mysql and phpmyadmin images for you
 - run ``` docker-compose exec php php artisan key:generate ``` to generate key for application.
 - run ``` docker-compose exec php php artisan optimize:clear ``` to clear all cache.
-- add database credentials in ``.env`` file.
-- you will find database info inside  `docker-compose.yaml` file in mysql_db service environment key, run
-``` docker-compose exec php php artisan migrate --seed``` to create tables and seed 5 sender and 10 bikers .
+- add database credentials in ``.env`` file , you will find database info inside  `docker-compose.yaml` file in mysql_db service environment key.
+- run ``` docker-compose exec php php artisan migrate --seed``` to create tables and seed 5 sender and 10 bikers .
 
 you will, can access the dashboard under ``` http://localhost:8000 ``` .<br>
 and, access the phpmyadmin under ``` http://localhost:8888 ```  and using the database credentials to access it.
