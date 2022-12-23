@@ -1,21 +1,24 @@
 <?php
 
+use App\Http\Controllers\general\BikerController;
+use App\Http\Controllers\general\ParcelController;
 use App\Http\Controllers\web\DashboardController;
 use App\Http\Controllers\web\LoginController;
 use App\Http\Controllers\web\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('layout');
-});
+
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
-
+    Route::get('/', [DashboardController::class,'index'])->name('dashboard');
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
+    Route::get('sender-parcels' , [ParcelController::class , 'getData']);
+    Route::post('parcels' , [ParcelController::class , 'store']);
+
+    Route::get('get-all-parcels' , [BikerController::class , 'getData']);
 });
 
 Route::middleware('guest')->group(function () {

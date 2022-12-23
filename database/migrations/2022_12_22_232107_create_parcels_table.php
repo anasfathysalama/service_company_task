@@ -18,7 +18,7 @@ class CreateParcelsTable extends Migration
             $table->string('pick_up_address')->nullable();
             $table->string('drop_off_address')->nullable();
             $table->unsignedBigInteger('sender_id')->index();
-            $table->unsignedBigInteger('biker_id')->index();
+            $table->unsignedBigInteger('biker_id')->index()->nullable();
             $table->enum('status', ['new', 'picked_up']);
             $table->timestamps();
         });
