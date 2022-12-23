@@ -1,25 +1,29 @@
-let addNewBtn = document.getElementById('add-new-btn');
-addNewBtn.addEventListener('click', function (e) {
-    $("#create-parcel-modal").modal('show');
-});
+$(function () {
 
-let saveParcelBtn = document.getElementById('save-parcel-btn');
-saveParcelBtn.addEventListener('click', function (e) {
-    saveNewParcel();
-});
+    let addNewBtn = document.getElementById('add-new-btn');
+    addNewBtn.addEventListener('click', function (e) {
+        $("#create-parcel-modal").modal('show');
+    });
 
+
+    let saveParcelBtn = document.getElementById('save-parcel-btn');
+    saveParcelBtn.addEventListener('click', function (e) {
+        saveNewParcel();
+    });
+
+});
 
 let saveNewParcel = () => {
     let pickAddress = $("#pick_up_address").val();
     let dropAddress = $("#drop_off_address").val();
 
     if (pickAddress === '') {
-        alertMessage('please add pick-up address' , 'error');
+        alertMessage('please add pick-up address', 'error');
         return false;
     }
 
     if (dropAddress === '') {
-        alertMessage('please add drop-off address' , 'error');
+        alertMessage('please add drop-off address', 'error');
         return false;
     }
 

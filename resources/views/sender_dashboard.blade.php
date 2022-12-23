@@ -75,6 +75,6 @@
         let baseUrl = "{{url('/')}}";
         let token = "{{csrf_token()}}";
     </script>
-    <script src="{{asset('js/sender/main.js')}}?v=1.0.0"></script>
-    <script src="{{asset('js/sender/create.js')}}?v=1.0.0"></script>
+    <script src="{{asset('js/sender/main.js')}}?v=1.1.1"></script>
+    <script src="{{asset('js/sender/create.js')}}?v=1.1.1"></script>
 @endpush

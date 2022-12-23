@@ -1,64 +1,64 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Solution task for delivery service company
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This application contain an implementation for delivery service company handles the
+collection and delivery of parcels for people.
+---
 
-## About Laravel
+## Installation
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+You can run this application by using docker or by using of any  local development.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+#### After clone repo 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**This step for all kind of installation**
+inside root directory for application run ``` composer install ``` and then copy ``.env.example`` to ``.env``
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+##### Using Docker .<br>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+after clone this repo you will find `docker-compose.yaml` file, and it contains all services the application need.
 
-## Laravel Sponsors
+**Steps** .<br>
+- inside root directory for application run `` docker-compose up --build `` and it will build nginx , php , mysql and phpmyadmin images for you
+- run ``` docker-compose exec php php artisan key:generate ``` to generate key for application.
+- run ``` docker-compose exec php php artisan optimize:clear ``` to clear all cache.
+- add database credentials in ``.env`` file.
+- you will find database info inside  `docker-compose.yaml` file in mysql_db service environment key, run
+``` docker-compose exec php php artisan migrate --seed``` to create tables and seed 5 sender and 10 bikers .
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+you will, can access the dashboard under ``` http://localhost:8000 ``` .<br>
+and, access the phpmyadmin under ``` http://localhost:8888 ```  and using the database credentials to access it.
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+##### Using Local Development .<br>
 
-## Contributing
+after clone this repo you will find `docker-compose.yaml` file, and it contains all services the application need.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+**Steps** .<br>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- create your database and setup it inside ``` .env ``` file.
+- run ```php artisan key:generate ``` to generate key for application.
+- run ``` php artisan optimize:clear ``` to clear all cache.
+- run  ``` php artisan migrate --seed``` to create tables and seed 5 sender and 10 bikers .
 
-## Security Vulnerabilities
+---
+## Usage of web dashboard
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- you can access web dashboard in ``` http://localhost:8000 ``` and, can login using any of account persists in database.
+- senders account can log in under ``` username is sender_1``` from 1 to 5 and ``` password is 123456 ```.
+- bikers account can log in under ``` username is biker_1``` from 1 to 10 and ``` password is 123456 ```.
+- can register new biker or sender account.
+- sender can only see his parcels.
+- you will find all web routes inside ```routes/web.php``` file
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Usage of api
+
+**Note** , you need to apply request headers to ``` Accept:application/json ``` to see validation errors inside your postman  or any other api tool.
+
+- you need to add api after url and then type your route like this example ```http://localhost:8000/api/biker-parcels```
+- you will find all api routes inside ```routes/api.php``` file.
+- token type for authorization requests is ```Bearer``` .
+
+

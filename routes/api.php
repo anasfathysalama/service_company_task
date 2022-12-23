@@ -15,9 +15,9 @@ Route::post('login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);
 
-    Route::get('sender-parcels', [ApiParcelController::class, 'index']);
+    Route::get('sender-parcels', ApiParcelController::class);
     Route::post('sender-parcels', [ParcelController::class, 'store']);
 
-    Route::get('biker-parcels', [ApiBikerController::class, 'index']);
+    Route::get('biker-parcels', ApiBikerController::class);
     Route::post('biker-parcels', [BikerController::class, 'pickUpParcel']);
 });

@@ -11,7 +11,7 @@ class BikerController extends Controller
 {
     use ApiResponseTrait;
 
-    public function index()
+    public function __invoke()
     {
         $data = Parcel::query()->where('status', 'new')->get();
         return $this->apiSuccessResponse($data);
