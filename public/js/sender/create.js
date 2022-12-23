@@ -1,6 +1,12 @@
 $(function () {
 
+    window.onerror = function (msg, url, line) {
+        alert('try again');
+        location.reload();
+    }
+
     let addNewBtn = document.getElementById('add-new-btn');
+
     addNewBtn.addEventListener('click', function (e) {
         $("#create-parcel-modal").modal('show');
     });

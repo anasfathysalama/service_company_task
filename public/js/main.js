@@ -1,3 +1,5 @@
+
+
 let destroyDataTable = (tableId) => {
     let table = $('#' + tableId).DataTable({
         retrieve: true,

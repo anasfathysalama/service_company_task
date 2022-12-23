@@ -2,6 +2,10 @@ let id;
 
 $(function () {
     loadDataTable();
+    window.onerror = function (msg, url, line) {
+        alert('try again');
+        location.reload();
+    }
 });
 
 
