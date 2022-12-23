@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\api\AuthController;
-use App\Http\Controllers\api\BikerController;
+use App\Http\Controllers\api\BikerController as ApiBikerController;
 use App\Http\Controllers\api\ParcelController as ApiParcelController;
+use App\Http\Controllers\general\BikerController;
 use App\Http\Controllers\general\ParcelController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('sender-parcels', [ApiParcelController::class, 'index']);
     Route::post('sender-parcels', [ParcelController::class, 'store']);
 
-    Route::get('biker-parcels', [BikerController::class, 'index']);
+    Route::get('biker-parcels', [ApiBikerController::class, 'index']);
     Route::post('biker-parcels', [BikerController::class, 'pickUpParcel']);
 });

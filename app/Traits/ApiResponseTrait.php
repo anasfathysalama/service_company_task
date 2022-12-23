@@ -9,10 +9,11 @@ trait ApiResponseTrait
 {
 
 
-    public function apiErrorResponse($data = [], int $code = 500): JsonResponse
+    public function apiErrorResponse($data = [], $message = '', int $code = 500): JsonResponse
     {
         return Response::json([
             'success' => false,
+            'message' => $message,
             'code' => $code,
             'data' => $data
         ]);

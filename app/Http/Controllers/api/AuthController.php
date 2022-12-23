@@ -36,9 +36,9 @@ class AuthController extends Controller
                 $user['token'] = auth()->user()->createToken(Str::random(40))->plainTextToken;
                 return $this->apiSuccessResponse($user);
             }
-            return $this->apiErrorResponse();
+            return $this->apiErrorResponse([], 'Unauthorized.');
         } catch (\Exception $exception) {
-            return $this->apiErrorResponse();
+            return $this->apiErrorResponse([], 'Unauthorized.');
         }
     }
 
