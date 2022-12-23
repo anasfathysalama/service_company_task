@@ -1,5 +1,7 @@
 ## Solution task for delivery service company
 
+**Developed using  [Laravel](https://laravel.com/) framework** <br>
+
 This application contain an implementation for delivery service company handles the
 collection and delivery of parcels for people.
 ---
