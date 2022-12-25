@@ -43,4 +43,4 @@ RUN chown 1000:1000 /var/www
 
 
 # Expose port 8000 and start php-fpm server
-EXPOSE 9000
+EXPOSE 8000
