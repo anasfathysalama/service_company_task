@@ -42,5 +42,5 @@ RUN chown 1000:1000 /var/www
 #RUN chmod -R 775 /var/www/storage
 
 
-# Expose port 9000 and start php-fpm server
+# Expose port 8000 and start php-fpm server
 EXPOSE 9000
